@@ -30,6 +30,7 @@
 
 #ifdef Q_OS_ANDROID
 #include <QtAndroid>
+#include "/home/jan/kirigami/src/kirigamiplugin.h"
 
 // WindowManager.LayoutParams
 #define FLAG_TRANSLUCENT_STATUS 0x04000000
@@ -47,6 +48,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
 //The desktop QQC2 style needs it to be a QApplication
 #ifdef Q_OS_ANDROID
     QGuiApplication app(argc, argv);
+    KirigamiPlugin::getInstance().registerTypes();
 #else
     QApplication app(argc, argv);
 #endif
@@ -54,7 +56,8 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     //Extra debug if needed
     //qputenv("QML_IMPORT_TRACE", "1");
     QQmlApplicationEngine engine;
-    
+    engine.addImportPath(QStringLiteral("/usr/local/lib/x86_64-linux-gnu/qml"));
+
     qmlRegisterType<InfoData>("Data", 1, 0, "InfoData");
 
     //we want different main files on desktop or mobile
@@ -71,7 +74,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
         return -1;
     }
 
-    //HACK to color the system bar on Android, use qtandroidextras and call the appropriate Java methods 
+    //HACK to color the system bar on Android, use qtandroidextras and call the appropriate Java methods
 #ifdef Q_OS_ANDROID
     QtAndroid::runOnAndroidThread([=]() {
         QAndroidJniObject window = QtAndroid::androidActivity().callObjectMethod("getWindow", "()Landroid/view/Window;");

@@ -17,8 +17,8 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import QtQuick 2.1
-import QtQuick.Controls 2.0 as Controls
+import QtQuick 2.12
+import QtQuick.Controls 2.12 as Controls
 import QtQuick.Layouts 1.2
 import org.kde.kirigami 2.11 as Kirigami
 import "gallery"
@@ -156,7 +156,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: "Title And Image"
-                    checked: root.globalDrawer.title.length > 0 && 
+                    checked: root.globalDrawer.title.length > 0 &&
                         root.globalDrawer.bannerImageSource.toString().length > 0
                     enabled: globalDrawer.bannerVisible
                     onTriggered: {
@@ -167,7 +167,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: "Title Only"
-                    checked: root.globalDrawer.title.length > 0 && 
+                    checked: root.globalDrawer.title.length > 0 &&
                         root.globalDrawer.bannerImageSource.toString().length == 0
                     enabled: globalDrawer.bannerVisible
                     onTriggered: {
@@ -178,7 +178,7 @@ Kirigami.ApplicationWindow {
                 }
                 Kirigami.Action {
                     text: "None"
-                    checked: root.globalDrawer.title.length == 0 && 
+                    checked: root.globalDrawer.title.length == 0 &&
                         root.globalDrawer.bannerImageSource.toString().length == 0
                     enabled: globalDrawer.bannerVisible
                     onTriggered: {
